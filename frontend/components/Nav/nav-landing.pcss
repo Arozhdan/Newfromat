@@ -1,0 +1,27 @@
+.nav-landing{
+  left: 0;
+  top: 0;
+  width: 100%;
+  position: fixed;
+  @apply py-12 bg-white z-20;
+  transition: all 0.3s ease;
+  &__logo{
+    transition: all 0.3s ease;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+  }
+}
+.nav-landing.small{
+  @apply py-6 bg-white z-20 shadow-sm;
+  .nav-landing__logo{
+    visibility: visible;
+    opacity: 1;
+    height: unset;
+  }
+  .nav-landing__logo--bigger{
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+  }
+}

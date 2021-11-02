@@ -5,6 +5,9 @@ export default {
     htmlAttrs: {
       lang: 'en'
     },
+    bodyAttrs: {
+      'data-theme': 'light'
+    },
     target: 'server',
     meta: [
       { charset: 'utf-8' },
@@ -24,6 +27,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/vue-carousel.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -33,7 +37,6 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxtjs/tailwindcss',
-    '@nuxt/typescript-build',
     '@nuxtjs/composition-api/module'
   ],
 

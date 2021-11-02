@@ -2,6 +2,7 @@
   <div class="app-wrapper">
     <NavLanding />
     <Nuxt />
+    <FooterLanding />
   </div>
 </template>
 <script>
