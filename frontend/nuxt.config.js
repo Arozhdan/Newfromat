@@ -37,13 +37,33 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/composition-api/module'
+    '@nuxtjs/composition-api/module',
+    '@nuxt/typescript-build'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/apollo'
+
   ],
+  apollo: {
+    tokenName: 'nuxt-apollo', // specify token name
+    cookieAttributes: {
+      expires: 7 // optional, default: 7 (days)
+    },
+    defaultOptions: {
+      $query: {
+        fetchPolicy: 'network-only',
+        errorPolicy: 'all'
+      }
+    },
+    clientConfigs: {
+      default: {
+        httpEndpoint: process.env.BASE_URL
+      }
+    }
+  },
   axios: {
     proxy: true,
     proxyHeaders: false,

@@ -1,0 +1,74 @@
+query{
+  homepage {
+    translations(filter: {languages_id: {code: {_eq: "en-US"}}}) {
+      page_title
+      page_subtitle
+      stat_title
+      statistics {
+        item {
+          __typename
+          ... on statistics {
+            id
+            multiplier
+            unit
+            description
+          }
+        }
+      }
+      advertisers_title
+      advertisers_subtitle
+      advertisers_stat_title
+      advertisers_stat_subtitle
+      advertisers_slider_body
+      advertisers_slider {
+        id
+        directus_files_id {
+          id
+        }
+      }
+      advertisers_offer_title
+      advertisers_offer_subtitle
+      advertisers_offer {
+        id
+      }
+      venues_title
+      venues_subtitle
+      venue_benefits {
+        id
+        item{
+          __typename
+          ...on benefit{
+            id
+            title
+            image {
+              id
+            }
+            body
+          }
+        }
+      }
+      venues_steps_title
+      venue_steps{
+        item{
+          __typename
+          ...on step{
+            id
+            title
+          }
+        }
+      }
+      venue_service{
+        item{
+          __typename
+          ...on service{
+            id
+            image {
+              id
+            }
+            title
+          }
+        }
+      }
+    }
+  }
+}

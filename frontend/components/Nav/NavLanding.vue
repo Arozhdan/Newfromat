@@ -7,9 +7,27 @@
           <IconLogoBigger class="nav-landing__logo--bigger" />
         </a>
         <div class="hidden sm:flex ml-6 xl:ml-12">
-          <a href="#" class="minicaps text-gray-48 font-bold text-sm inline-block py-2 transition duration-300 hover:text-orange">For advertisers</a>
-          <a href="#" class="minicaps text-gray-48 font-bold text-sm inline-block ml-8 py-2 transition duration-300 hover:text-orange">For venues</a>
-          <a href="#" class="minicaps text-gray-48 font-bold text-sm inline-block ml-8 py-2 transition duration-300 hover:text-orange">Contacts</a>
+          <nuxt-link
+            :class="{'text-orange' : activeLink === 'adv'}"
+            :to="{name:'index', hash:'#advertisers'}"
+            class="minicaps text-gray-48 font-bold text-sm inline-block py-2 transition duration-300 hover:text-orange"
+          >
+            For advertisers
+          </nuxt-link>
+          <nuxt-link
+            :class="{'text-orange' : activeLink === 'venue'}"
+            :to="{name:'index', hash:'#venues'}"
+            class="minicaps text-gray-48 font-bold text-sm inline-block ml-8 py-2 transition duration-300 hover:text-orange"
+          >
+            For venues
+          </nuxt-link>
+          <nuxt-link
+            :class="{'text-orange' : activeLink === 'contact'}"
+            :to="{name:'index', hash:'#contacts'}"
+            class="minicaps text-gray-48 font-bold text-sm inline-block ml-8 py-2 transition duration-300 hover:text-orange"
+          >
+            Contacts
+          </nuxt-link>
         </div>
       </div>
       <div class="dropdown dropdown-end block sm:hidden">
@@ -54,12 +72,25 @@ export default {
   name: 'NavLanding',
   components: { IconLogoBigger },
   data: () => ({
-    smallNav: false
+    smallNav: false,
+    activeLink: false
   }),
   mounted () {
     document.addEventListener('scroll', () => {
       this.smallNav = window.pageYOffset > 50
+      this.activeLink = this.getActiveLink()
     })
+  },
+  methods: {
+    getActiveLink () {
+      const adv = document.querySelector('#advertisers')
+      const venue = document.querySelector('#venues')
+      const contact = document.querySelector('#contacts')
+      if (window.scrollY > adv.offsetTop && window.scrollY < venue.offsetTop) { return 'adv' }
+      if (window.scrollY > venue.offsetTop && window.scrollY < contact.offsetTop - 100) { return 'venue' }
+      if (window.scrollY > contact.offsetTop - 100) { return 'contact' }
+      return false
+    }
   }
 }
 </script>
